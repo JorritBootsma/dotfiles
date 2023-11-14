@@ -1,0 +1,41 @@
+source ~/.antigen/antigen.zsh
+
+# Load oh-my-zsh library
+antigen use oh-my-zsh
+
+# load all your plugins here
+antigen theme spaceship-prompt/spaceship-prompt
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle fzf
+antigen bundle clvv/fasd fasd
+antigen bundle wookayin/fzf-fasd
+
+# done
+antigen apply
+
+setopt HIST_IGNORE_DUPS
+
+# turn off async to make git visuals work again in spaceship
+SPACESHIP_PROMPT_ASYNC=false
+
+# initialize fasd
+eval "$(fasd --init auto)"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/jorrit/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/jorrit/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/jorrit/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/jorrit/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# To avoid a driver error
+export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6
+
