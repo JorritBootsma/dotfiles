@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Install prerequisites
+sudo apt install curl git zsh tmux -y
+
 set -e
 
 CONFIG="install.conf.yaml"
